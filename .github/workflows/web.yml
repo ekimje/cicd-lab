@@ -25,10 +25,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: 테스트
-        working-directory: ${{ env.APP }}
         run: | 
           docker build -t ${{ env.APP }}:test ${{ env.APP }}
-          docker run --rm --add-host api:127.0.0.1 ${{ env.APP }}:test nginx-t
+          docker run --rm --add-host api:127.0.0.1 ${{ env.APP }}:test nginx -t
 
   scan:
     needs: test
